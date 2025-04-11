@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Managing {{ hotel.name }}</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Hotel Information</h5>
+                <p>{{ hotel.description }}</p>
+                <p><strong>Rating:</strong> {{ hotel.stars }} stars</p>
+                <a href="#" class="btn btn-secondary">Edit Hotel</a>
+            </div>
+        </div>
+
+        <h4>Room Types</h4>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ room_form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Room Type</button>
+        </form>
+
+        <div class="mt-4">
+            {% for room in room_types %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5>{{ room.name }}</h5>
+                    <p>Price: ${{ room.price_per_night }} per night</p>
+                    <p>Capacity: {{ room.capacity }} people</p>
+                    <p>Available: {{ room.available_rooms }} rooms</p>
+                    <a href="{% url 'delete_room' room.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Bookings</h5>
+                <!-- Booking management will go here -->
+                <p>Booking management interface coming soon</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

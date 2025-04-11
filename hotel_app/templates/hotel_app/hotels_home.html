@@ -1,0 +1,15 @@
+{% extends 'hotel_app/base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>Welcome to Toumai Dary Hotels</h1>
+        <p class="lead">Explore and manage hotels easily.</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'hotel_app:manager_dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+        {% else %}
+            <a href="{% url 'hotel_app:manager_signup' %}" class="btn btn-success">Register as Hotel Manager</a>
+        {% endif %}
+    </div>
+{% endblock %}
