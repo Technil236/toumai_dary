@@ -34,7 +34,6 @@ class Hotel(models.Model):
     amenities = models.ManyToManyField(HotelAmenity)
     cover_image = models.ImageField(upload_to='hotels/covers/')
     is_featured = models.BooleanField(default=False)
-    # Add any Location fields here or inherit from Location if needed
     
     def __str__(self):
         return self.name

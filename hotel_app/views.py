@@ -11,7 +11,7 @@ def manager_signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.is_hotel_owner = True  # Ensure this field exists in your custom User model
+            user.is_hotel_owner = True 
             user.save()
             login(request, user)
             return redirect('hotel_app:manager_dashboard')
